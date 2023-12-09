@@ -1,0 +1,12 @@
+
+<IfModule mod_ssl.c>
+
+############################################
+## Make HTTPS env vars available for CGI mode
+
+    SSLOptions StdEnvVars
+
+</IfModule>
+
+
+ SetEnv MAGE_MODE default

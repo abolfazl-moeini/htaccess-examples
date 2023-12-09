@@ -1,0 +1,9 @@
+# Block q1 & q2 as query string
+
+RewriteCond %{QUERY_STRING} .  [NC]
+# RewriteCond %{QUERY_STRING} !^q1= 
+# RewriteCond %{QUERY_STRING} !^q2= 
+
+# Disallow wp-admin in the url
+RewriteCond %{THE_REQUEST} !/wp-admin  [NC]
+RewriteRule (.*)  /$1? [R=301,L]

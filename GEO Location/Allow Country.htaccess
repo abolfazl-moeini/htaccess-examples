@@ -1,0 +1,16 @@
+#allow country with mod_geoip 1st option
+<IfModule mod_geoip.c>
+GeoIPEnable On
+RewriteCond %{ENV:GEOIP_COUNTRY_CODE} !^(CZ|SK)$
+RewriteRule ^(.*)$ - [F,L]
+</IfModule>
+
+
+#allow country with mod_geoip 2nd option
+<IfModule mod_geoip.c>
+GeoIPEnable On
+SetEnvIf GEOIP_COUNTRY_CODE CZ AllowCountry
+SetEnvIf GEOIP_COUNTRY_CODE SK AllowCountry
+deny from all
+allow from env=AllowCountry
+</IfModule>

@@ -1,0 +1,15 @@
+#block country with mod_geoip 1st option
+<IfModule mod_geoip.c>
+GeoIPEnable On
+RewriteCond %{ENV:GEOIP_COUNTRY_CODE} ^(RU|CN)$
+RewriteRule ^(.*)$ - [F,L]
+</IfModule>
+
+
+#block country with mod_geoip 2nd option
+<IfModule mod_geoip.c>
+GeoIPEnable On
+SetEnvIf GEOIP_COUNTRY_CODE RU BlockCountry
+SetEnvIf GEOIP_COUNTRY_CODE CN BlockCountry
+deny from env=BlockCountry
+</IfModule>
